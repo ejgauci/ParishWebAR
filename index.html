@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <title>Parish AR</title>
+        
+
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+        <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+        <script src='js/aframe-ar-nft.js'></script>
+        <script src="aframeComponents.js"></script>
+        <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+        <script type="module" src="firebaseConfig.js"></script>
+        
+        
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2LCR6ZVBV7"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-2LCR6ZVBV7');
+        </script>
+        
+
+    </head>
+    <body>
+
+      <div>
+        <p id="pin" class="dataPar">San Pawl</p>
+        <p id="clock" class="dataPar">Tnejn-Sibt:06:00,07:45,08:30,18:00  <br>  Is-Sibt:16:30                   <br> Il-Hadd:06:00,07:30,09:00,10:30,12:00,18:00</p>
+        <p id="priest" class="dataPar">Dun Joseph Mizzi                                                                 +35621454467                                                  joseph.mizzi@maltadiocese.org</p>
+        <p id="info" class="dataPar">Il-Knisja Kolleggjata Bazilika ta’ San Pawl hi mibnija fuq il-foss tal-belt Rumana Melita li kienet thaddan ukoll parti sewwa mir-Rabat. Hi wkoll mibnija fuq ghar fejn skont tradizzjoni qadima kien jghammar San Pawl tul it-tliet xhur li dam Malta fis-sena 60 w.Kr. </p>
+        <!-- <p id="chLat" class="dataPar">35.893519</p>
+        <p id="chLon" class="dataPar">14.502655</p> -->
+      </div>
+      <style>
+        .dataPar{
+          display:none;
+        }
+        
+        .disclaimer { display: none !important;}
+      </style>
+      
+
+    <a-scene
+        vr-mode-ui="enabled: false"
+        cursor='rayOrigin: mouse'
+        raycaster='near: 0; far: 50000'
+        arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
+        renderer='antialias: true; alpha: true'
+        loading-screen="dotsColor: red; backgroundColor: black">
+
+
+           
+           <!-- <a-camera gps-camera='simulateLatitude: 35.893633; simulateLongitude: 14.502561' rotation-reader></a-camera> -->
+           <!-- <a-camera gps-projected-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader></a-camera> -->
+           <!-- <a-camera gps-projected-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader></a-camera> -->
+
+            <a-assets>
+                <a-asset-item id="pin-asset" src="assets/pin/scene.gltf"></a-asset-item>
+                <a-asset-item id="clock-asset" src="assets/clock/scene.gltf"></a-asset-item>
+                <a-asset-item id="priest-asset" src="assets/priest/scene.gltf"></a-asset-item>
+                <a-asset-item id="info-asset" src="assets/info/scene.gltf"></a-asset-item>
+            </a-assets>
+    
+                
+            <a-entity
+                gltf-model="#pin-asset"
+                scale="0.1 0.1 0.1" position="4 1 -1.5" rotation="0 90 0"
+                pin-gltf>
+            </a-entity>
+
+            <a-entity
+                gltf-model="#clock-asset"
+                scale="1.2 1.2 1.2" position="4 0.8 -0.5" rotation="0 180 0"
+                clock-gltf>
+            </a-entity>
+
+            <a-entity
+                gltf-model="#priest-asset"
+                scale="0.003 0.003 0.003" position="4 0.8 0.5" rotation="0 -90 0"
+                priest-gltf animation-mixer>
+            </a-entity>
+
+            <a-entity
+                gltf-model="#info-asset"
+                scale="0.08 0.08 0.08" position="4 1 1.5" rotation="0 -90 0"
+                info-gltf animation-mixer>
+            </a-entity>
+
+            <a-entity
+                display-text>
+            </a-entity>
+              
+            <!-- gps-entity-place="latitude: 35.893172; longitude: 14.503071;" -->
+
+
+              <!-- <a-entity
+                position="0 2 -2"
+                text="color: blue; align: center; width: 5; font: kelsonsans;
+                      value: Hello"
+              ></a-entity> -->
+
+
+              <!-- <a-box gps-projected-entity-place='latitude: 51.0596; longitude: -0.7170' color='red' scale='200 200 200' clicker></a-box> -->
+             
+              <a-camera gps-camera rotation-reader> </a-camera>
+
+
+    </a-scene>
+    </body>
+</html>
